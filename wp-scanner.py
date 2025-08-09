@@ -17,11 +17,9 @@ def get_plugin_names_from_html(url):
             match = re.search(r'/wp-content/plugins/([^/]+)/', src)
             if match:
                 plugin_name = match.group(1)
-                # Jeśli plugin jeszcze nie jest w słowniku, dodajemy go
                 if plugin_name not in plugins:
                     plugins[plugin_name] = src
 
-        # Zwracamy listę krotek (plugin_name, src)
         return list(plugins.items())
 
     except Exception as e:
@@ -85,7 +83,6 @@ def main():
                 version_str = version if version else "Unknown"
                 line += f" | Version: {version_str}"
 
-            # Jeśli jest -d, wyświetlamy src bez względu na searchsploit
             if args.display_src:
                 print(f"[src] {src}")
                 output_lines.append(f"[src] {src}")
